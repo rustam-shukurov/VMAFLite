@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net10.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<LangVersion>latest</LangVersion>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+
+		<PublishAot>false</PublishAot>
+		<PublishSingleFile>true</PublishSingleFile>
+		<SelfContained>true</SelfContained>
+		<PublishReadyToRun>true</PublishReadyToRun>
+		<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+		<EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+		<PublishTrimmed>true</PublishTrimmed>
+		<NoWarn>IL2026;IL2104</NoWarn>
+
+		<ApplicationIcon>Assets\appicon.ico</ApplicationIcon>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Folder Include="Models\" />
+
+		<AvaloniaResource Include="Assets\**" Exclude="Assets\ffmpeg.exe" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="Assets\ffmpeg.exe" />
+
+		<Content Include="Assets\appicon.ico" />
+
+		<EmbeddedResource Include="Assets\ffmpeg.exe" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Avalonia" Version="11.3.10" />
+		<PackageReference Include="Avalonia.Desktop" Version="11.3.10" />
+		<PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.10" />
+		<PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.10" />
+		<PackageReference Include="Avalonia.Diagnostics" Version="11.3.10">
+			<IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
+			<PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+	</ItemGroup>
+</Project>
